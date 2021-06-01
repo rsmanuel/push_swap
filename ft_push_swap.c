@@ -1,42 +1,33 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void print(t_stack *head)
+void	test(int *stack_a, int ac, int i)
 {
-	while (head)
-	{
-		printf("| %d | \n", head->data);
-		head = head->next;
-	}
+	printf("after ra:\n");
+		stack_a = op_r(stack_a, ac - 1);
+		i = 0;
+		while(i < ac - 1)
+		{
+			printf("[%d]\n", stack_a[i]);
+			i++;
+		}
 }
-/* Função para inserir a node no inicio
-da linked list */
-void stack(t_stack **head, int data)
-{
-	t_stack *new;
-	
-	new = (t_stack *)malloc(sizeof(t_stack));
-	new->data = data;
-	new->prev = NULL;
-	new->next = (*head);
-	(*head) = new; 
-}
-
 int main(int ac, char **av)
 {
-	t_stack *data;
-	int count;
+    int *stack_a;
+	int i;
 
-	data = NULL;
-	count = 0;
+	i = 0;
     if (ac > 1)
 	{
+        stack_a = (int *)malloc(sizeof(int) * (ac - 1));
 		while(*++av)
 		{
-			stack(&data , ft_atoi(*av));
-			count++;
+			stack_a[i] = ft_atoi(*av);
+			printf("[%d]\n", stack_a[i]);
+			i++;
 		}
-		print(data);
+		test(stack_a, ac, i);
 	}
 	else
 		return (1);
