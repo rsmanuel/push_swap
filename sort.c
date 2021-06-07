@@ -1,6 +1,7 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
+
 int *create_stackb(int len)
 {
 	int *stack_b;
