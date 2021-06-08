@@ -1,4 +1,3 @@
 .DS_Store
 a.out
 libft/*
-ft_push_swap_ll.c
