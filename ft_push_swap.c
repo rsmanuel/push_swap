@@ -18,7 +18,7 @@ void	main_continue(int *stack, int ac)
 	int *stack_b;
 
 	stack_b = create_stackb(ac);
-	op_p(stack, stack_b, ac - 1);
+	stack_b = op_p(stack, stack_b, ac - 1);
 	printf("stack_b:\n");
 	test(stack_b, ac);
 	printf("stack_a:\n");
