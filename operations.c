@@ -44,3 +44,13 @@ int *op_r(int *stack, int len)
 
     return (new_stack);
 }
+
+void op_p(int *stack_from, int *stack_to, int len)
+{
+    free(stack_to);
+    stack_to = malloc(sizeof(int) * len + 1);
+    stack_to[len + 1] = 0;
+    if(!stack_to)
+        return ;   
+    ft_swap_int(&stack_from[len], &stack_to[len + 1]);
+}

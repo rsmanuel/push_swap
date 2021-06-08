@@ -1,8 +1,10 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void	test(int *stack_a, int ac, int i)
+void	test(int *stack_a, int ac)
 {
+		int i;
+
 		i = 0;
 		while(i < ac - 1)
 		{
@@ -11,22 +13,16 @@ void	test(int *stack_a, int ac, int i)
 		}
 }
 
-int  *quicksort(int *sort, int i)
+void	main_continue(int *stack, int ac)
 {
-	int ac;
-	int average;
+	int *stack_b;
 
-	ac = i;
-	average = 0;
-	while (--i > 0)
-    {
-		if (sort[i] < sort[i - 1])
-		{
-			ft_swap_int(&sort[i], &sort[i - 1]);
-            quicksort(sort, ac);
-        }
-    }
-	return (sort);
+	stack_b = create_stackb(ac);
+	op_p(stack, stack_b, ac - 1);
+	printf("stack_b:\n");
+	test(stack_b, ac);
+	printf("stack_a:\n");
+	test(stack, ac);
 }
 
 int check_errors(int *stack, int num, int i, char *av)
@@ -38,24 +34,37 @@ int check_errors(int *stack, int num, int i, char *av)
 	{
 		if (stack[i] == num || !ft_atoi(av))
 		{
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (0);
 		}
 	}
 	return (1);
 }
 
+int	check_sorted(int *stack, int ac)
+{
+	int i;
+	
+	i = ac - 1;
+	while(i-- > 1)
+	{
+		if(stack[i] < stack[i - 1])
+			return(1);
+	}
+	return (0);
+}
+
 int main(int ac, char **av)
 {
     int *stack;
 	int i;
-	int	*demo;
 
 	i = 0;
     if (ac > 1)
 	{
         stack = (int *)malloc(sizeof(int) * (ac - 1));
-		demo = (int *)malloc(sizeof(int) * (ac - 1));
+		if (!stack)
+			return(1);
 		while(*++av)
 		{
 			stack[i] = ft_atoi(*av);
@@ -63,8 +72,9 @@ int main(int ac, char **av)
 				return(1);
 			i++;
 		}
-		demo = quicksort(stack, ac - 1);
-		test(demo, ac, i);
+		if(!check_sorted(stack, ac))
+			return (1);
+		main_continue(stack, ac);
 		return (0);
 	}
 	else

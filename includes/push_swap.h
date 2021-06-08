@@ -14,5 +14,7 @@ typedef struct s_temp
 int	*op_s(int *stack_a, int len);
 int *op_rr(int *stack_a, int len);
 int *op_r(int *stack_a, int len);
+int *create_stackb(int len);
+void op_p(int *stack_from, int *stack_to, int len);
 
 #endif

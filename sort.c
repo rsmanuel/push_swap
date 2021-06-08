@@ -8,6 +8,6 @@ int *create_stackb(int len)
 
 	stack_b = malloc(sizeof(int) * len);
 	if (!stack_b)
-		return (1);
+		return NULL;
 	return (stack_b);
 }
