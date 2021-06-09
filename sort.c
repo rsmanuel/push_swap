@@ -6,7 +6,7 @@ int *create_stackb(int len)
 {
 	int *stack_b;
 
-	stack_b = malloc(sizeof(int) * len - 1);
+	stack_b = malloc(sizeof(int) * len);
 	if (!stack_b)
 		return NULL;
 	return (stack_b);

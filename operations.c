@@ -47,11 +47,12 @@ int *op_r(int *stack, int len)
 
 int *op_p(int *stack_from, int *stack_to, int len)
 {
-    free(stack_from);
-    free(stack_to);
-    stack_to = malloc(sizeof(int) * len + 1);
-    stack_from = malloc(sizeof(int) * len - 1);
-    stack_to[len + 1] = stack_from[len];
+    int tmp;
+
+    tmp = stack_from[len];
+    printf("|%d|\n", stack_from[len]);
+    printf("|%d|\n", stack_to[len + 1]);
+    stack_to[len + 1] = tmp;
     stack_from[len] = 0;
-    return(stack_to);    
+    return(stack_to);
 }
