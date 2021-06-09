@@ -6,15 +6,16 @@
 
 typedef struct s_temp
 {
-    int temp;
-    int b_top;
-    int a_top;
+    int len_a;
+    int len_b;
+    int *stack_a;
+    int *stack_b;
 }   t_temp;
 
-int	*op_s(int *stack_a, int len);
-int *op_rr(int *stack_a, int len);
-int *op_r(int *stack_a, int len);
+void op_s(int *stack_a, int len);
+void op_rr(int *stack_a, int len);
+void op_r(int *stack_a, int len);
 int *create_stackb(int len);
-int *op_p(int *stack_from, int *stack_to, int len);
+int *op_pb(int *stack_a, int len, t_temp *data);
 
 #endif

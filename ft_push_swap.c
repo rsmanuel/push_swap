@@ -6,7 +6,7 @@ void	test(int *stack_a, int ac)
 		int i;
 
 		i = 0;
-		while(i < ac - 1)
+		while(i < ac)
 		{
 			printf("[%d]\n", stack_a[i]);
 			i++;
@@ -15,14 +15,11 @@ void	test(int *stack_a, int ac)
 
 void	main_continue(int *stack, int ac)
 {
-	int *stack_b;
-
-	stack_b = create_stackb(ac);
-	stack_b = op_p(stack, stack_b, ac);
-	printf("stack_b:\n");
-	test(stack_b, ac);
-	printf("stack_a:\n");
-	test(stack, ac);
+	t_temp *data;
+	
+	data->len_a = ac;
+	data->len_b = 0;
+	data->stack_a = stack;
 }
 
 int check_errors(int *stack, int num, int i, char *av)
@@ -30,7 +27,7 @@ int check_errors(int *stack, int num, int i, char *av)
 	int j;
 
 	j = 0;
-	while (--i > 0)
+	while (i-- > 0)
 	{
 		if (stack[i] == num || !ft_atoi(av))
 		{
@@ -70,13 +67,13 @@ int main(int ac, char **av)
 			stack[i] = ft_atoi(*av);
 			if (!check_errors(stack, stack[i], i, *av))
 				return(1);
+			if(!check_sorted(stack, ac))
+				return(1);
 			i++;
 		}
-		if(!check_sorted(stack, ac))
-			return (1);
-		main_continue(stack, ac);
+		main_continue(stack, ac - 1);
 		return (0);
 	}
 	else
 		return (1);
-}	
+}

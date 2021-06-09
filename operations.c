@@ -1,58 +1,63 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-int	*op_s(int *stack, int len)
+void op_s(int *stack, int len)
 {
-	int *new_stack;
-
-	new_stack = stack;
-	ft_swap_int(&stack[len - 1], &stack[len - 2]);
-
-	return (new_stack);
+	ft_swap_int(&stack[0], &stack[1]);
 }
 
-int *op_rr(int *stack, int len)
+void op_rr(int *stack, int len)
 {
-    int *new_stack;
-    int last;
+    int tmp_stack[len];
     int i;
     int j;
+    int last;
 
-    last = stack[len - 1];
-    new_stack[0] = last;
     i = 1;
     j = 0;
-    while (i < len && j < len)
-        new_stack[i++] = stack[j++];
-
-    return (new_stack);
+    last = stack[len - 1];
+	while(j < len - 1)
+		tmp_stack[i++] = stack[j++];
+	i = 0;
+	j = 0;
+	while (i < len)
+		stack[i++] = tmp_stack[j++];
+    stack[0] = last;
 }
 
-int *op_r(int *stack, int len)
+void op_r(int *stack, int len)
 {
-    int *new_stack;
-    int first;
-    int i;
-    int j;
+	int tmp_stack[len];
+	int i;
+	int j;
+	int first;
 
-    first = stack[0];
-    new_stack[len - 1] = first;
-    i = 0;
-    j = 1;
-    while (i < len - 1 && j < len)
-        new_stack[i++] = stack[j++];
-
-    return (new_stack);
+	j = 1;
+	i = 0;
+	first = stack[0];
+	while(i < len - 1)
+		tmp_stack[i++] = stack[j++];
+	i = 0;
+	j = 0;
+	while(i < len - 1)
+		stack[i++] = tmp_stack[j++];
+	stack[len - 1] = first;
 }
 
-int *op_p(int *stack_from, int *stack_to, int len)
+int *op_pb(int *stack_a, int len, t_temp *data)
 {
-    int tmp;
+	int *stack_b;
+	int i;
+	int j;
 
-    tmp = stack_from[len];
-    printf("|%d|\n", stack_from[len]);
-    printf("|%d|\n", stack_to[len + 1]);
-    stack_to[len + 1] = tmp;
-    stack_from[len] = 0;
-    return(stack_to);
+	data->len_a--;
+	data->len_b++;
+	i = 0;
+	j = 1;
+	free(stack_a);
+	stack_a = malloc(sizeof(int) * data->len_a);
+	while(j < data->len_a)
+		stack_a[i++] = data->stack_a[j++];
+	data->stack_b = stack_b;
+	return (stack_b);
 }
