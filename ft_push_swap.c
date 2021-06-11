@@ -55,12 +55,9 @@ int check_errors(int *stack, int num, int i, char *av)
 
 int	check_sorted(int *stack, int ac)
 {
-	int i;
-	
-	i = ac - 1;
-	while(i-- > 1)
+	while(ac-- > 1)
 	{
-		if(stack[i] < stack[i - 1])
+		if(stack[ac] < stack[ac - 1])
 			return(1);
 	}
 	return (0);
@@ -82,7 +79,7 @@ int main(int ac, char **av)
 			stack[i] = ft_atoi(*av);
 			if (!check_errors(stack, stack[i], i, *av))
 				return(1);
-			if(!check_sorted(stack, ac))
+			if(!check_sorted(stack, ac - 1))
 				return(1);
 			i++;
 		}
