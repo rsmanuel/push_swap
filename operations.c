@@ -1,7 +1,7 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void op_s(int *stack, int len)
+void op_s(int *stack)
 {
 	ft_swap_int(&stack[0], &stack[1]);
 }
@@ -44,12 +44,13 @@ void op_r(int *stack, int len)
 	stack[len - 1] = first;
 }
 
-int *op_pb(int *stack_a, int len, t_temp *data)
+int *op_pb(int *stack_a, t_temp *data)
 {
 	int *stack_b;
 	int i;
 	int j;
 
+	stack_b = NULL;
 	data->len_a--;
 	data->len_b++;
 	i = 0;

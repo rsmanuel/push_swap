@@ -13,13 +13,28 @@ void	test(int *stack_a, int ac)
 		}
 }
 
+void	init_struct(int *stack, int ac)
+{
+	t_temp *data;
+
+	data = NULL;
+	data->stack_a = stack;
+	data->stack_b = NULL;
+	data->len_a = ac;
+	data->len_b = 0;
+}
+
 void	main_continue(int *stack, int ac)
 {
 	t_temp *data;
-	
+
+	data = malloc(sizeof(t_temp));
+	data = NULL;
+	data->stack_a = stack;
+	data->stack_b = NULL;
 	data->len_a = ac;
 	data->len_b = 0;
-	data->stack_a = stack;
+	data->stack_b = op_pb(stack, data);
 }
 
 int check_errors(int *stack, int num, int i, char *av)
