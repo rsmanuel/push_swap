@@ -29,12 +29,12 @@ void	main_continue(int *stack, int ac)
 	t_temp *data;
 
 	data = malloc(sizeof(t_temp));
-	data = NULL;
 	data->stack_a = stack;
 	data->stack_b = NULL;
 	data->len_a = ac;
 	data->len_b = 0;
-	data->stack_b = op_pb(stack, data);
+	op_pb(stack, data);
+	test(stack, ac);
 }
 
 int check_errors(int *stack, int num, int i, char *av)

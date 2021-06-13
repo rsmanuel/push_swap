@@ -44,7 +44,7 @@ void op_r(int *stack, int len)
 	stack[len - 1] = first;
 }
 
-int *op_pb(int *stack_a, t_temp *data)
+void op_pb(int *stack_a, t_temp *data)
 {
 	int *stack_b;
 	int i;
@@ -55,10 +55,9 @@ int *op_pb(int *stack_a, t_temp *data)
 	data->len_b++;
 	i = 0;
 	j = 1;
-	free(stack_a);
 	stack_a = malloc(sizeof(int) * data->len_a);
 	while(j < data->len_a)
 		stack_a[i++] = data->stack_a[j++];
+	test(stack_a, 4);
 	data->stack_b = stack_b;
-	return (stack_b);
 }
