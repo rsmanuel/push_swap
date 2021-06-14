@@ -6,35 +6,30 @@ void	test(int *stack_a, int ac)
 		int i;
 
 		i = 0;
-		while(i < ac)
+		while(stack_a && i < ac)
 		{
 			printf("[%d]\n", stack_a[i]);
 			i++;
 		}
 }
 
+
+void	main_continue(t_temp *data)
+{
+	op_pb(data);
+	test(data->stack_a, data->len_a);
+	test(data->stack_b, data->len_b);
+}
+
 void	init_struct(int *stack, int ac)
 {
 	t_temp *data;
 
-	data = NULL;
-	data->stack_a = stack;
-	data->stack_b = NULL;
-	data->len_a = ac;
-	data->len_b = 0;
-}
-
-void	main_continue(int *stack, int ac)
-{
-	t_temp *data;
-
 	data = malloc(sizeof(t_temp));
-	data->stack_a = stack;
-	data->stack_b = NULL;
 	data->len_a = ac;
 	data->len_b = 0;
-	op_pb(stack, data);
-	test(stack, ac);
+	data->stack_a = stack;
+	main_continue(data);
 }
 
 int check_errors(int *stack, int num, int i, char *av)
@@ -83,7 +78,7 @@ int main(int ac, char **av)
 				return(1);
 			i++;
 		}
-		main_continue(stack, ac - 1);
+		init_struct(stack, ac - 1);
 		return (0);
 	}
 	else
