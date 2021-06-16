@@ -17,14 +17,26 @@ void	test(int *stack_a, int ac)
 void	main_continue(t_temp *data)
 {
 	op_pb(data);
-	//op_r(data->stack_a, data->len_a);
+	printf("\n");
+	printf("stack_a:\n");
+	test(data->stack_a, data->len_a);
+	printf("stack_b:\n");
+	test(data->stack_b, data->len_b);
+	op_pb(data);
+	printf("\n");
+	printf("stack_a:\n");
+	test(data->stack_a, data->len_a);
+	printf("stack_b:\n");
+	test(data->stack_b, data->len_b);
+	op_pb(data);
+	printf("\n");
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
 	printf("stack_b:\n");
 	test(data->stack_b, data->len_b);
 }
 
-void	init_struct(int *stack, int ac)
+void	init_struct(int *stack, int *stack_b, int ac)
 {
 	t_temp *data;
 
@@ -32,6 +44,7 @@ void	init_struct(int *stack, int ac)
 	data->len_a = ac;
 	data->len_b = 0;
 	data->stack_a = stack;
+	data->stack_b = stack_b;
 	main_continue(data);
 }
 
@@ -64,12 +77,14 @@ int	check_sorted(int *stack, int ac)
 int main(int ac, char **av)
 {
     int *stack;
+	int *stack_b;
 	int i;
 
 	i = 0;
     if (ac > 1)
 	{
         stack = (int *)malloc(sizeof(int) * (ac - 1));
+		stack_b = (int *)malloc(sizeof(int) * (ac - 1));
 		if (!stack)
 			return(1);
 		while(*++av)
@@ -81,7 +96,7 @@ int main(int ac, char **av)
 				return(1);
 			i++;
 		}
-		init_struct(stack, ac - 1);
+		init_struct(stack, stack_b, ac - 1);
 		return (0);
 	}
 	else
