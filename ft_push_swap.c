@@ -17,6 +17,7 @@ void	test(int *stack_a, int ac)
 void	main_continue(t_temp *data)
 {
 	op_pb(data);
+	//op_r(data->stack_a, data->len_a);
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
 	printf("stack_b:\n");
