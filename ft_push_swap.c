@@ -13,42 +13,41 @@ void	test(int *stack_a, int ac)
 		}
 }
 
+void test_print_stack(t_temp *data)
+{
+	printf("\n");
+	printf("stack_a:\n");
+	test(data->stack_a, data->len_a);
+	printf("stack_b:\n");
+	test(data->stack_b, data->len_b);
+}
+
+void test_print_struct(t_temp *data)
+{
+	printf("len_a: %d\n", data->len_a);
+	printf("len_b: %d\n", data->len_b);
+}
 
 void	main_continue(t_temp *data)
 {
 	/*-----------------------------------------------------*/
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
+	test_print_stack(data);
 	/*-----------------------------------------------------*/
 	op_pb(data);
-	printf("\n");
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
+	test_print_stack(data);
+	test_print_struct(data);
 	/*-----------------------------------------------------*/
 	op_pb(data);
-	printf("\n");
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
+	test_print_stack(data);
+	test_print_struct(data);
 	/*-----------------------------------------------------*/
 	op_pb(data);
-	printf("\n");
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
+	test_print_stack(data);
+	test_print_struct(data);
 	/*-----------------------------------------------------*/
 	op_pa(data);
-	printf("\n");
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
+	test_print_stack(data);
+	test_print_struct(data);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
