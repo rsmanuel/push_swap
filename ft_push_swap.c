@@ -16,19 +16,34 @@ void	test(int *stack_a, int ac)
 
 void	main_continue(t_temp *data)
 {
+	/*-----------------------------------------------------*/
+	printf("stack_a:\n");
+	test(data->stack_a, data->len_a);
+	printf("stack_b:\n");
+	test(data->stack_b, data->len_b);
+	/*-----------------------------------------------------*/
 	op_pb(data);
 	printf("\n");
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
 	printf("stack_b:\n");
 	test(data->stack_b, data->len_b);
+	/*-----------------------------------------------------*/
 	op_pb(data);
 	printf("\n");
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
 	printf("stack_b:\n");
 	test(data->stack_b, data->len_b);
+	/*-----------------------------------------------------*/
 	op_pb(data);
+	printf("\n");
+	printf("stack_a:\n");
+	test(data->stack_a, data->len_a);
+	printf("stack_b:\n");
+	test(data->stack_b, data->len_b);
+	/*-----------------------------------------------------*/
+	op_pa(data);
 	printf("\n");
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
