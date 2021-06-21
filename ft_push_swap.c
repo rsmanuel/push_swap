@@ -98,7 +98,7 @@ int main(int ac, char **av)
     if (ac > 1)
 	{
         stack = (int *)malloc(sizeof(int) * (ac - 1));
-		stack_b = (int *)malloc(sizeof(int) * (ac - 1));
+		stack_b = (int *)malloc(sizeof(int) * (ac -1));
 		if (!stack)
 			return(1);
 		while(*++av)

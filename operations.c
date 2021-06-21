@@ -77,9 +77,11 @@ void	op_pb(t_temp *data)
 	int i;
 	int j;
 
-	op_pb_aux(data, i, j, stack_b);
 	i = 0;
 	j = 1;
+	stack_b = malloc(sizeof(int) * data->len_b);
+	new_stack = malloc(sizeof(int) * data->len_a);
+	op_pb_aux(data, i, j, stack_b);
 	new_stack = data->stack_a;
 	while(i < data->len_a - 1)
 		new_stack[i++] = data->stack_a[j++];
@@ -90,6 +92,8 @@ void	op_pb(t_temp *data)
 	data->top_a = data->stack_a[0];
 	data->top_b = data->stack_b[0];
 	data->len_a--;
+	free(stack_b);
+	free(new_stack);
 }
 
 void op_pa_aux(t_temp *data, int i, int j, int *stack_a)
@@ -125,9 +129,9 @@ void	op_pa(t_temp *data)
 	int i;
 	int j;
 
-	op_pb_aux(data, i, j, stack_a);
 	i = 0;
 	j = 1;
+//op_pb_aux(data, i, j, stack_a);
 	new_stack = data->stack_b;
 	while(i < data->len_b - 1)
 		new_stack[i++] = data->stack_b[j++];
