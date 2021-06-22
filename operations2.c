@@ -49,6 +49,7 @@ void	op_pb(t_temp *data)
 	data->top_b = data->stack_b[0];
 	if (data->len_a)
 		data->len_a--;
+	write(1, "pb\n", 3);
 	free(new_stack);
 	free(stack_b);
 }
@@ -101,6 +102,7 @@ void	op_pa(t_temp *data)
 	data->top_b = data->stack_a[0];
 	if (data->len_b)
 		data->len_b--;
+	write(1, "pa\n", 3);
 	free(new_stack);
 	free(stack_a);
 }
