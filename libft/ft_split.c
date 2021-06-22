@@ -6,7 +6,7 @@
 /*   By: rmanuel <rmanuel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:28:53 by rmanuel           #+#    #+#             */
-/*   Updated: 2021/02/24 17:09:56 by rmanuel          ###   ########.fr       */
+/*   Updated: 2021/06/22 16:04:52 by rmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static char	**ftsplit(char const *s, char **split, char c, int nbstrs)
 	return (split);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		nbstrs;

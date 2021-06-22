@@ -1,10 +1,10 @@
 #include "libft.h"
 
-void    ft_swap_int(int *a, int *b)
+void	ft_swap_int(int *a, int *b)
 {
-    int c;
+	int	c;
 
-    c = *a;
-    *a = *b;
-    *b = c;
+	c = *a;
+	*a = *b;
+	*b = c;
 }

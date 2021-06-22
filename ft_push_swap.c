@@ -3,17 +3,17 @@
 
 void	test(int *stack_a, int ac)
 {
-		int i;
+	int	i;
 
-		i = 0;
-		while(stack_a && i < ac)
-		{
-			printf("[%d]\n", stack_a[i]);
-			i++;
-		}
+	i = 0;
+	while (stack_a && i < ac)
+	{
+		printf("[%d]\n", stack_a[i]);
+		i++;
+	}
 }
 
-void test_print_stack(t_temp *data)
+void	test_print_stack(t_temp *data)
 {
 	printf("\n");
 	printf("stack_a:\n");
@@ -22,7 +22,7 @@ void test_print_stack(t_temp *data)
 	test(data->stack_b, data->len_b);
 }
 
-void test_print_struct(t_temp *data)
+void	test_print_struct(t_temp *data)
 {
 	printf("len_a: %d\n", data->len_a);
 	printf("len_b: %d\n", data->len_b);
@@ -30,29 +30,22 @@ void test_print_struct(t_temp *data)
 
 void	main_continue(t_temp *data)
 {
-	/*-----------------------------------------------------*/
 	test_print_stack(data);
-	/*-----------------------------------------------------*/
 	op_pb(data);
 	test_print_stack(data);
-	test_print_struct(data);
-	/*-----------------------------------------------------*/
-	op_pb(data);
+	op_r(data->stack_b, data->len_b);
 	test_print_stack(data);
-	test_print_struct(data);
-	/*-----------------------------------------------------*/
-	op_pb(data);
+	op_r(data->stack_b, data->len_b);
 	test_print_stack(data);
-	test_print_struct(data);
-	/*-----------------------------------------------------*/
+	op_rr(data->stack_a, data->len_a);
+	test_print_stack(data);
 	op_pa(data);
 	test_print_stack(data);
-	test_print_struct(data);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
 {
-	t_temp *data;
+	t_temp	*data;
 
 	data = malloc(sizeof(t_temp));
 	data->len_a = ac;
@@ -62,9 +55,9 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	main_continue(data);
 }
 
-int check_errors(int *stack, int num, int i, char *av)
+int	check_errors(int *stack, int num, int i, char *av)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (i-- > 0)
@@ -80,34 +73,34 @@ int check_errors(int *stack, int num, int i, char *av)
 
 int	check_sorted(int *stack, int ac)
 {
-	while(ac-- > 1)
+	while (ac-- > 1)
 	{
-		if(stack[ac] < stack[ac - 1])
-			return(1);
+		if (stack[ac] < stack[ac - 1])
+			return (1);
 	}
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    int *stack;
-	int *stack_b;
-	int i;
+	int	*stack;
+	int	*stack_b;
+	int	i;
 
 	i = 0;
-    if (ac > 1)
+	if (ac > 1)
 	{
-        stack = (int *)malloc(sizeof(int) * (ac - 1));
-		stack_b = (int *)malloc(sizeof(int) * (ac -1));
+		stack = (int *)malloc(sizeof(int) * (ac - 1));
+		stack_b = (int *)malloc(sizeof(int) * (ac - 1));
 		if (!stack)
-			return(1);
-		while(*++av)
+			return (1);
+		while (*++av)
 		{
 			stack[i] = ft_atoi(*av);
 			if (!check_errors(stack, stack[i], i, *av))
-				return(1);
-			if(!check_sorted(stack, ac - 1))
-				return(1);
+				return (1);
+			if (!check_sorted(stack, ac - 1))
+				return (1);
 			i++;
 		}
 		init_struct(stack, stack_b, ac - 1);
