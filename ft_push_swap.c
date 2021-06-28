@@ -70,6 +70,8 @@ int	main(int ac, char **av)
 			i++;
 		}
 		init_struct(stack, stack_b, ac - 1);
+		free(stack);
+		free(stack_b);
 		return (0);
 	}
 	else
