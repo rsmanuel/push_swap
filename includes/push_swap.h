@@ -18,9 +18,19 @@ typedef struct s_temp
 void op_s(int *stack_a);
 void op_rr(int *stack_a, int len);
 void op_r(int *stack_a, int len);
-void op_pb(t_temp *data);
-int *create_stackb(int len);
+void pb(t_temp *data);
 void test(int *stack_a, int ac);
-void op_pa(t_temp *data);
+void pa(t_temp *data);
+void sb(t_temp *data);
+void sa(t_temp *data);
+void rb(t_temp *data);
+void ra(t_temp *data);
+void rrb(t_temp *data);
+void rra(t_temp *data);
+void two_and_three(t_temp *data, int len);
+
+/* test.c */
+void	test_print_stack(t_temp *data);
+void	test(int *stack_a, int ac);
 
 #endif

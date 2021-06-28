@@ -27,7 +27,7 @@ void	op_pb_aux(t_temp *data, int i, int j, int *stack_b)
 	}
 }
 
-void	op_pb(t_temp *data)
+void	pb(t_temp *data)
 {
 	int	*new_stack;
 	int	*stack_b;
@@ -80,7 +80,7 @@ void	op_pa_aux(t_temp *data, int i, int j, int *stack_a)
 	}
 }
 
-void	op_pa(t_temp *data)
+void	pa(t_temp *data)
 {
 	int	*new_stack;
 	int	*stack_a;

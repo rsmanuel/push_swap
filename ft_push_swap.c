@@ -1,77 +1,10 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void	test(int *stack_a, int ac)
-{
-	int	i;
-
-	i = 0;
-	while (stack_a && i < ac)
-	{
-		printf("[%d]\n", stack_a[i]);
-		i++;
-	}
-}
-
-void	test_print_stack(t_temp *data)
-{
-	printf("\n");
-	printf("stack_a:\n");
-	test(data->stack_a, data->len_a);
-	printf("stack_b:\n");
-	test(data->stack_b, data->len_b);
-}
-
-void	test_print_struct(t_temp *data)
-{
-	printf("len_a: %d\n", data->len_a);
-	printf("len_b: %d\n", data->len_b);
-}
-
 void	main_continue(t_temp *data, int len)
 {
-	if (len == 2)
-	{
-		if (data->stack_a[0] > data->stack_a[1])
-		{
-			op_r(data->stack_a, data->len_a);
-			write(1, "ra\n", 3);
-		}
-	}
-	else if (len == 3)
-	{
-		if (data->stack_a[0] > data->stack_a[1] && data->stack_a[2] > data->stack_a[1] && data->stack_a[2] > data->stack_a[0])
-		{
-			op_s(data->stack_a);
-			write(1, "sa\n", 3);
-		}
-		else if (data->stack_a[1] < data->stack_a[0] && data->stack_a[2] < data->stack_a[1] && data->stack_a[2] < data->stack_a[0])
-		{
-			op_s(data->stack_a);
-			write(1, "sa\n", 3);
-			op_rr(data->stack_a, data->len_a);
-			write(1, "rra\n", 4);
-		}
-		else if (data->stack_a[0] > data->stack_a[1] && data->stack_a[0] > data->stack_a[2] && data->stack_a[2] > data->stack_a[1])
-		{
-			op_r(data->stack_a, data->len_a);
-			write(1, "ra\n", 3);
-		}
-		else if (data->stack_a[1] > data->stack_a[0] && data->stack_a[1] > data->stack_a[2] && data->stack_a[2] > data->stack_a[0])
-		{
-			op_s(data->stack_a);
-			write(1, "sa\n", 3);
-			op_r(data->stack_a, data->len_a);
-			write(1, "ra\n", 3);
-			test_print_stack(data);
-		}
-		else
-		{
-			op_rr(data->stack_a, data->len_a);
-			write(1, "rra\n", 4);
-			test_print_stack(data);
-		}
-	}
+	if(len == 2 || len == 3)
+		two_and_three(data, len);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
@@ -104,7 +37,7 @@ int	check_errors(int *stack, int num, int i, char *av)
 
 int	check_sorted(int *stack, int ac)
 {
-	while (ac-- > 1)
+	while (ac-- > 0)
 	{
 		if (stack[ac] < stack[ac - 1])
 			return (1);

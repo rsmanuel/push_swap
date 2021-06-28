@@ -51,3 +51,9 @@ void	op_r(int *stack, int len)
 	stack[len - 1] = first;
 	free(tmp_stack);
 }
+
+void sb(t_temp *data)
+{
+	op_s(data->stack_b);
+	write(1, "sb\n", 3);
+}
