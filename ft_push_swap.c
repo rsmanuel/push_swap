@@ -19,6 +19,7 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->stack_a = stack;
 	data->stack_b = stack_b;
 	main_continue(data, ac);
+	free(data);
 }
 
 int	check_errors(int *stack, int num, int i, char *av)
