@@ -3,8 +3,10 @@
 
 void	main_continue(t_temp *data, int len)
 {
-	if(len == 2 || len == 3)
+	if (len == 2 || len == 3)
 		two_and_three(data, len);
+	else if (len > 3 && len <= 5)
+		four_and_five(data, len);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)

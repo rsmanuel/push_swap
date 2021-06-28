@@ -39,3 +39,13 @@ void	two_and_three(t_temp *data, int len)
 	else if (len == 3)
 		three_aux(data, len);
 }
+
+void    four_and_five(t_temp *data, int len)
+{
+    while(data->len_a != 3)
+		pb(data);
+	two_and_three(data, data->len_a);
+	while (data->len_a != len)
+		pa(data);
+	test_print_stack(data);
+}
