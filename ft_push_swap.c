@@ -64,8 +64,12 @@ int	main(int ac, char **av)
 		while (*++av)
 		{
 			stack[i] = ft_atoi(*av);
-			if (!check_errors(stack, stack[i], i, *av))
+			if (!check_errors(stack, stack[i], i, *av) && !check_sorted(stack, ac - 1))
+			{
+				free(stack);
+				free(stack_b);
 				return (1);
+			}
 			if (!check_sorted(stack, ac - 1))
 				return (1);
 			i++;
