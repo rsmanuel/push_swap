@@ -5,8 +5,8 @@ void	main_continue(t_temp *data, int len)
 {
 	if (len == 2 || len == 3)
 		two_and_three(data, len);
-	else if (len > 3 && len <= 5)
-		four_and_five(data, len);
+	else if (len > 3 && len < 101)
+		four_to_hundred(data, len);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
@@ -19,6 +19,7 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->stack_a = stack;
 	data->stack_b = stack_b;
 	main_continue(data, ac);
+	test_print_stack(data);
 	free(data);
 }
 

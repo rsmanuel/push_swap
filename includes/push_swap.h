@@ -28,7 +28,8 @@ void ra(t_temp *data);
 void rrb(t_temp *data);
 void rra(t_temp *data);
 void two_and_three(t_temp *data, int len);
-void four_and_five(t_temp *data, int len);
+void four_to_hundred(t_temp *data, int len);
+int check_sorted(int *stack, int ac);
 
 /* test.c */
 void	test_print_stack(t_temp *data);
