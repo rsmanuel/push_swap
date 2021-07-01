@@ -40,9 +40,12 @@ int	check_errors(int *stack, int num, int i, char *av)
 
 int	check_sorted(int *stack, int ac)
 {
-	while (ac-- > 0)
+	int i;
+
+	i = ac;
+	while (i-- > 0)
 	{
-		if (stack[ac] < stack[ac - 1])
+		if (stack[i] < stack[i - 1])
 			return (1);
 	}
 	return (0);
