@@ -83,7 +83,7 @@ int find_max(t_temp *data)
 		}
 		i--;
 	}
-	return (max);
+	return (i + 1);
 }
 
 void    four_to_hundred(t_temp *data, int len)
@@ -104,18 +104,30 @@ void    four_to_hundred(t_temp *data, int len)
 	i = 0;
 	quicksort(sort_temp, data->len_a);
 	pivot = find_pivot(sort_temp, len);
-	while(data->len_a != 3)
+	printf("!!!%d!!!\n", pivot);
+	free(sort_temp);
+	while(data->len_a > 3)
 	{
 		if(data->stack_a[i] < pivot && data->stack_a[i] != pivot)
 		{
 			pb(data);
 			i = 0;
 		}
-		else if (data->stack_a[i] > pivot && data->stack_a[i] != pivot)
-			i++;
-		i++;
+		else if (data->stack_a[i] > pivot || data->stack_a[i] == pivot)
+		{
+			ra(data);
+			i = 0;
+		}
+		/*else if (data->stack_a[i] == pivot)
+		{
+			ra(data);
+			i = 0;
+		}*/
+		if (data->len_a == 3)
+			break ;
 	}
 	two_and_three(data, data->len_a);
-	max = find_max(data);
-	printf("!!!%d!!!\n", max);
+	test_print_stack(data);
+	i = 0;
+
 }

@@ -19,7 +19,6 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->stack_a = stack;
 	data->stack_b = stack_b;
 	main_continue(data, ac);
-	test_print_stack(data);
 	free(data);
 }
 

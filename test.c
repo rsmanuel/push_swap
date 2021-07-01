@@ -16,6 +16,7 @@ void	test(int *stack_a, int ac)
 void	test_print_stack(t_temp *data)
 {
 	printf("\n");
+	printf("\n");
 	printf("stack_a:\n");
 	test(data->stack_a, data->len_a);
 	printf("stack_b:\n");
