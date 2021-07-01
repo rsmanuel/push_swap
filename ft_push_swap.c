@@ -49,7 +49,7 @@ int	check_sorted(int *stack, int ac)
 			return (1);
 	}
 	return (0);
-}
+} 
 
 int	main(int ac, char **av)
 {
@@ -73,8 +73,6 @@ int	main(int ac, char **av)
 				free(stack_b);
 				return (1);
 			}
-			if (!check_sorted(stack, ac - 1))
-				return (1);
 			i++;
 		}
 		init_struct(stack, stack_b, ac - 1);
