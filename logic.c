@@ -72,62 +72,63 @@ int find_max(t_temp *data)
 	int i;
 	int max;
 
-	i = data->len_b;
-	max = data->stack_b[i - 1];
-	i--;
-	while (i > 0)
+	i = 0;
+	max = data->stack_b[i];
+	while (data->stack_b[i])
 	{
-		if (data->stack_b[i - 1] > max)
-		{
-			max = data->stack_b[i - 1];
-		}
-		i--;
+		if (data->stack_b[i] > max)
+			max = data->stack_b[i];
+		i++;
 	}
-	return (i + 1);
+	return (max);
 }
 
-void    four_to_hundred(t_temp *data, int len)
+int check_pivot(t_temp *data, int pivot)
 {
-	int *sort_temp;
-	int pivot;
+	int i;
+
+	i = 0;
+	while(data->stack_a[i])
+	{
+		if (data->stack_a[i] < pivot)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int sort_and_pivot(t_temp *data, int len)
+{
 	int i;
 	int j;
-	int max;
+	int *sort_temp;
+	int pivot;
 
 	i = 0;
 	j = 0;
 	sort_temp = malloc(sizeof(int) * data->len_a);
 	if (!sort_temp)
-		return ;
+		return (0);
 	while (i < len)
 		sort_temp[i++] = data->stack_a[j++];
 	i = 0;
 	quicksort(sort_temp, data->len_a);
 	pivot = find_pivot(sort_temp, len);
-	printf("!!!%d!!!\n", pivot);
 	free(sort_temp);
-	while(data->len_a > 3)
-	{
-		if(data->stack_a[i] < pivot && data->stack_a[i] != pivot)
-		{
-			pb(data);
-			i = 0;
-		}
-		else if (data->stack_a[i] > pivot || data->stack_a[i] == pivot)
-		{
-			ra(data);
-			i = 0;
-		}
-		/*else if (data->stack_a[i] == pivot)
-		{
-			ra(data);
-			i = 0;
-		}*/
-		if (data->len_a == 3)
-			break ;
-	}
-	two_and_three(data, data->len_a);
-	test_print_stack(data);
-	i = 0;
 
+	return (pivot);
+}
+
+void    four_to_hundred(t_temp *data, int pivot)
+{	
+	if(data->stack_a[0] < pivot && data->stack_a[0] != pivot)
+		pb(data);
+	else if (data->stack_a[0] > pivot || data->stack_a[0] == pivot)
+		ra(data);
+	if(data->len_a > 3)
+	{
+		if (!check_pivot(data, pivot))
+			pivot = sort_and_pivot(data, data->len_a);
+		four_to_hundred(data, pivot);
+	}
 }

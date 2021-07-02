@@ -3,10 +3,13 @@
 
 void	main_continue(t_temp *data, int len)
 {
+	int pivot;
+
+	pivot = sort_and_pivot(data, data->len_a);
 	if (len == 2 || len == 3)
 		two_and_three(data, len);
 	else if (len > 3 && len < 101)
-		four_to_hundred(data, len);
+		four_to_hundred(data, pivot);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
