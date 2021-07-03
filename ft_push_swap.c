@@ -3,13 +3,10 @@
 
 void	main_continue(t_temp *data, int len)
 {
-	int pivot;
-
-	pivot = sort_and_pivot(data, data->len_a);
 	if (len == 2 || len == 3)
 		two_and_three(data, len);
 	else if (len > 3 && len < 101)
-		four_to_hundred(data, pivot);
+		four_to_hundred(data);
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
@@ -21,7 +18,9 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->len_b = 0;
 	data->stack_a = stack;
 	data->stack_b = stack_b;
+	test_print_stack(data);
 	main_continue(data, ac);
+	test_print_stack(data);
 	free(data);
 }
 

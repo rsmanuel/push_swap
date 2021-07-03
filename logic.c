@@ -119,16 +119,38 @@ int sort_and_pivot(t_temp *data, int len)
 	return (pivot);
 }
 
-void    four_to_hundred(t_temp *data, int pivot)
+void temp(t_temp *data)
+{
+	int *temp;
+	int i;
+	int j;
+	
+	i = 0;
+	j = 0;
+	temp = malloc(sizeof(int) * data->len_a);
+	while (i < data->len_a)
+		temp[i++] = data->stack_a[j++];
+	data->stack_a = temp;
+	ra(data);
+	free(temp);
+}
+
+void    four_to_hundred(t_temp *data)
 {	
-	if(data->stack_a[0] < pivot && data->stack_a[0] != pivot)
-		pb(data);
-	else if (data->stack_a[0] > pivot || data->stack_a[0] == pivot)
-		ra(data);
-	if(data->len_a > 3)
+	int pivot;
+
+	pivot = sort_and_pivot(data, data->len_a);
+	while(data->len_a > 3)
 	{
 		if (!check_pivot(data, pivot))
 			pivot = sort_and_pivot(data, data->len_a);
-		four_to_hundred(data, pivot);
+		while (check_pivot(data, pivot))
+		{
+			if(data->stack_a[0] < pivot)
+				pb(data);
+			else
+				temp(data);
+		}
 	}
+	printf("!!!!!%d!!!!!\n", pivot);
 }
