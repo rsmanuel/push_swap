@@ -6,7 +6,10 @@ void	main_continue(t_temp *data, int len)
 	if (len == 2 || len == 3)
 		two_and_three(data, len);
 	else if (len > 3 && len < 101)
+	{
 		four_to_hundred(data, sort_and_pivot(data, data->len_a));
+		four_to_hundred_cont(data);
+	}
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
@@ -45,10 +48,11 @@ int	check_sorted(int *stack, int ac)
 	int i;
 
 	i = ac;
-	while (i-- > 0)
+	while (i > 0)
 	{
 		if (stack[i] < stack[i - 1])
 			return (1);
+		i--;
 	}
 	return (0);
 } 
@@ -64,7 +68,7 @@ int	main(int ac, char **av)
 	{
 		stack = (int *)malloc(sizeof(int) * (ac - 1));
 		stack_b = (int *)malloc(sizeof(int) * (ac - 1));
-		if (!stack)
+		if (!stack || !stack_b)
 			return (1);
 		while (*++av)
 		{

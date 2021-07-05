@@ -1,7 +1,7 @@
 #include "includes/push_swap.h"
 #include <stdio.h>
 
-void	three_aux(t_temp *data, int len)
+void	three_aux(t_temp *data)
 {
 	if (data->stack_a[0] > data->stack_a[1]
 		&& data->stack_a[2] > data->stack_a[1]
@@ -56,7 +56,7 @@ void	two_and_three(t_temp *data, int len)
 			sa(data);
 	}
 	else if (len == 3 && check_sorted(data->stack_a, data->len_a))
-		three_aux(data, len);
+		three_aux(data);
 }
 
 int find_pivot(int *sort, int len)
@@ -70,17 +70,18 @@ int find_pivot(int *sort, int len)
 int find_max(t_temp *data)
 {
 	int i;
+	int j;
 	int max;
 
 	i = 0;
+	j = i;
 	max = data->stack_b[i];
-	while (data->stack_b[i])
+	while (data->stack_b[i++] && i < data->len_b)
 	{
 		if (data->stack_b[i] > max)
-			max = data->stack_b[i];
-		i++;
+			j = i;
 	}
-	return (max);
+	return (j);
 }
 
 int check_pivot(t_temp *data, int pivot)
@@ -88,7 +89,7 @@ int check_pivot(t_temp *data, int pivot)
 	int i;
 
 	i = 0;
-	while(data->stack_a[i])
+	while(data->stack_a[i] && i < data->len_a)
 	{
 		if (data->stack_a[i] < pivot)
 			return (1);
@@ -119,28 +120,20 @@ int sort_and_pivot(t_temp *data, int len)
 	return (pivot);
 }
 
-void temp(t_temp *data)
-{
-	int *temp;
-	int i;
-	int j;
-	
-	i = 0;
-	j = 0;
-	temp = malloc(sizeof(int) * data->len_a);
-	while (i < data->len_a)
-		temp[i++] = data->stack_a[j++];
-	data->stack_a = temp;
-	ra(data);
-	free(temp);
-}
 
 void    four_to_hundred(t_temp *data, int pivot)
 {
-	while (check_pivot(data, pivot))
+	int max;
+	int where;
+	int i;
+
+	max = 0;
+	where = 0;
+	i = 0;
+	while (check_pivot(data, pivot) && data->len_a > 3)
 	{
 		if (data->stack_a[0] >= pivot)
-			temp(data);
+			ra(data);
 		else if (data->stack_a[0] < pivot)
 			pb(data);
 	}
@@ -148,5 +141,47 @@ void    four_to_hundred(t_temp *data, int pivot)
 	{
 		pivot = sort_and_pivot(data, data->len_a);
 		four_to_hundred(data, pivot);
+	}	
+}
+
+void four_to_hundred_cont(t_temp *data)
+{
+	int max;
+	int where;
+	int i;
+
+	max = 0;
+	where = 0;
+	i = 0;
+	while (data->len_b > 0)
+	{
+		test_print_stack(data);
+		three_aux(data);
+		max = find_max(data);
+		where = (data->len_b / 2);
+		i = max;
+		if (max <= where)
+		{
+			while (i != 0)
+			{
+				rb(data);
+				i--;
+			}
+			if (i == 0)
+				pa(data);
+		}
+		else if (max > where)
+		{
+			while (i != data->len_b)
+			{
+				rrb(data);
+				i++;
+			}
+			if (i == data->len_b)
+			{
+				rrb(data);
+				pa(data);
+			}
+		}
 	}
 }
