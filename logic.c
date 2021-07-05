@@ -135,22 +135,18 @@ void temp(t_temp *data)
 	free(temp);
 }
 
-void    four_to_hundred(t_temp *data)
-{	
-	int pivot;
-
-	pivot = sort_and_pivot(data, data->len_a);
-	while(data->len_a > 3)
+void    four_to_hundred(t_temp *data, int pivot)
+{
+	while (check_pivot(data, pivot))
 	{
-		if (!check_pivot(data, pivot))
-			pivot = sort_and_pivot(data, data->len_a);
-		while (check_pivot(data, pivot))
-		{
-			if(data->stack_a[0] < pivot)
-				pb(data);
-			else
-				temp(data);
-		}
+		if (data->stack_a[0] >= pivot)
+			temp(data);
+		else if (data->stack_a[0] < pivot)
+			pb(data);
 	}
-	printf("!!!!!%d!!!!!\n", pivot);
+	if (data->len_a > 3)
+	{
+		pivot = sort_and_pivot(data, data->len_a);
+		four_to_hundred(data, pivot);
+	}
 }
