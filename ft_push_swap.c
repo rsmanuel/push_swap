@@ -8,7 +8,8 @@ void	main_continue(t_temp *data, int len)
 	else if (len > 3 && len < 101)
 	{
 		four_to_hundred(data, sort_and_pivot(data, data->len_a));
-		four_to_hundred_cont(data);
+		two_and_three(data, data->len_a);
+		four_to_hundred_cont(data, find_max(data));
 	}
 }
 

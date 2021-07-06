@@ -123,13 +123,6 @@ int sort_and_pivot(t_temp *data, int len)
 
 void    four_to_hundred(t_temp *data, int pivot)
 {
-	int max;
-	int where;
-	int i;
-
-	max = 0;
-	where = 0;
-	i = 0;
 	while (check_pivot(data, pivot) && data->len_a > 3)
 	{
 		if (data->stack_a[0] >= pivot)
@@ -144,44 +137,39 @@ void    four_to_hundred(t_temp *data, int pivot)
 	}	
 }
 
-void four_to_hundred_cont(t_temp *data)
+int find_old_max(int old_max, t_temp *data)
 {
-	int max;
-	int where;
 	int i;
 
-	max = 0;
-	where = 0;
 	i = 0;
-	while (data->len_b > 0)
+	while(data->stack_a[i] && i < data->len_a)
 	{
-		test_print_stack(data);
-		three_aux(data);
-		max = find_max(data);
-		where = (data->len_b / 2);
-		i = max;
-		if (max <= where)
-		{
-			while (i != 0)
-			{
-				rb(data);
-				i--;
-			}
-			if (i == 0)
-				pa(data);
-		}
-		else if (max > where)
-		{
-			while (i != data->len_b)
-			{
-				rrb(data);
-				i++;
-			}
-			if (i == data->len_b)
-			{
-				rrb(data);
-				pa(data);
-			}
-		}
+		if (data->stack_a[i] == old_max)
+			return (1);
+		i++;
 	}
+	return (0);
+}
+
+void four_to_hundred_cont(t_temp *data, int max)
+{
+	int where;
+
+	where = ((data->len_b - 1) / 2);
+	if (max == 0)
+		pa(data);
+	else if (max < where)
+	{
+		while (max != 0)
+			rb(data);
+		pa(data);
+	}
+	else if (max > where)
+	{
+		while (max != 0)
+			rrb(data);
+		pa(data);
+	}
+	if (data->len_b > 0)
+		four_to_hundred_cont(data, max);
 }

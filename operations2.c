@@ -89,8 +89,8 @@ void	pa(t_temp *data)
 
 	i = 0;
 	j = 1;
-	new_stack = malloc(sizeof(int) * data->len_a);
-	stack_a = malloc(sizeof(int) * data->len_b);
+	new_stack = malloc(sizeof(int) * data->len_b);
+	stack_a = malloc(sizeof(int) * data->len_a);
 	op_pa_aux(data, i, j, stack_a);
 	while (i < data->len_b - 1)
 		new_stack[i++] = data->stack_b[j++];
