@@ -32,7 +32,9 @@ void four_to_hundred(t_temp *data, int pivot);
 int check_sorted(int *stack, int ac);
 int check_pivot(t_temp *data, int pivot);
 int sort_and_pivot(t_temp *data, int len);
+int sort_and_pivot_ten(t_temp *data, int len);
 void four_to_hundred_cont(t_temp *data);
+void hundred(t_temp *data, int pivot);
 int find_max(t_temp *data);
 
 /* test.c */

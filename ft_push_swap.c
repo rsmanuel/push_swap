@@ -15,6 +15,13 @@ void	main_continue(t_temp *data, int len)
 		while (data->len_b > 0)
 			four_to_hundred_cont(data);
 	}
+	else if (len > 100)
+	{
+		hundred(data, sort_and_pivot_ten(data, data->len_a));
+		two_and_three(data, data->len_a);
+		while (data->len_b > 0)
+			four_to_hundred_cont(data);
+	}
 }
 
 void	init_struct(int *stack, int *stack_b, int ac)
@@ -27,7 +34,6 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->stack_a = stack;
 	data->stack_b = stack_b;
 	main_continue(data, ac);
-	test_print_stack(data);
 	free(data);
 }
 
@@ -59,7 +65,7 @@ int	check_sorted(int *stack, int ac)
 		i--;
 	}
 	return (0);
-} 
+}
 
 int	main(int ac, char **av)
 {
