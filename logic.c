@@ -63,15 +63,7 @@ int find_pivot(int *sort, int len)
 {
 	int index;
 
-	index = len / 2;
-	return(sort[index]);
-}
-
-int find_pivot_ten(int *sort, int len)
-{
-	int index;
-
-	index = len / 10;
+	index = len / 4;
 	return(sort[index]);
 }
 
@@ -126,28 +118,6 @@ int sort_and_pivot(t_temp *data, int len)
 		sort_temp[i++] = data->stack_a[j++];
 	quicksort(sort_temp, data->len_a);
 	pivot = find_pivot(sort_temp, len);
-	test(sort_temp, data->len_a);
-	free(sort_temp);
-
-	return (pivot);
-}
-
-int sort_and_pivot_ten(t_temp *data, int len)
-{
-	int i;
-	int j;
-	int *sort_temp;
-	int pivot;
-
-	i = 0;
-	j = 0;
-	sort_temp = malloc(sizeof(int) * data->len_a);
-	if (!sort_temp)
-		return (0);
-	while (i < len)
-		sort_temp[i++] = data->stack_a[j++];
-	quicksort(sort_temp, data->len_a);
-	pivot = find_pivot_ten(sort_temp, len);
 	free(sort_temp);
 
 	return (pivot);
@@ -188,20 +158,4 @@ void four_to_hundred_cont(t_temp *data)
 		rb(data);
 	else if (find_max(data) > where && find_max(data) > 0)
 		rrb(data);
-}
-
-void hundred(t_temp *data, int pivot)
-{
-	while (check_pivot(data, pivot) && data->len_a > 3)
-	{
-		if (data->stack_a[0] >= pivot)
-			ra(data);
-		else if (data->stack_a[0] < pivot)
-			pb(data);
-	}
-	if (data->len_a > 3)
-	{
-		pivot = sort_and_pivot_ten(data, data->len_a);
-		hundred(data, pivot);
-	}
 }

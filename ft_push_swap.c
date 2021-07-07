@@ -17,7 +17,7 @@ void	main_continue(t_temp *data, int len)
 	}
 	else if (len > 100)
 	{
-		hundred(data, sort_and_pivot_ten(data, data->len_a));
+		four_to_hundred(data, sort_and_pivot(data, data->len_a));
 		two_and_three(data, data->len_a);
 		while (data->len_b > 0)
 			four_to_hundred_cont(data);
