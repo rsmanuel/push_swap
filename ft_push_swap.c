@@ -3,13 +3,17 @@
 
 void	main_continue(t_temp *data, int len)
 {
+	int where;
+
+	where = 0;
 	if (len == 2 || len == 3)
 		two_and_three(data, len);
 	else if (len > 3 && len < 101)
 	{
 		four_to_hundred(data, sort_and_pivot(data, data->len_a));
 		two_and_three(data, data->len_a);
-		four_to_hundred_cont(data, find_max(data));
+		while (data->len_b > 0)
+			four_to_hundred_cont(data);
 	}
 }
 
@@ -22,7 +26,6 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	data->len_b = 0;
 	data->stack_a = stack;
 	data->stack_b = stack_b;
-	test_print_stack(data);
 	main_continue(data, ac);
 	test_print_stack(data);
 	free(data);
@@ -74,7 +77,7 @@ int	main(int ac, char **av)
 		while (*++av)
 		{
 			stack[i] = ft_atoi(*av);
-			if (!check_errors(stack, stack[i], i, *av) && !check_sorted(stack, ac - 1))
+			if (!check_errors(stack, stack[i], i, *av))
 			{
 				free(stack);
 				free(stack_b);
