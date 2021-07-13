@@ -3,3 +3,6 @@ sort
 a.out
 libft/*
 a.out.dSYM
+checker
+pyviz.py
+push_swap

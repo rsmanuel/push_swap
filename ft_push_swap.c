@@ -44,7 +44,7 @@ int	check_errors(int *stack, int num, int i, char *av)
 	j = 0;
 	while (i-- > 0)
 	{
-		if (stack[i] == num || !ft_atoi(av))
+		if (stack[i] == num || (!ft_atoi(av) && *av != '0'))
 		{
 			write(2, "Error\n", 6);
 			return (0);
