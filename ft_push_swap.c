@@ -37,22 +37,6 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	free(data);
 }
 
-/*int	check_errors(int *stack, int num, int i, char *av)
-{
-	int	j;
-
-	j = 0;
-	while (i-- > 0)
-	{
-		if (stack[i] == num || (!ft_atoi(av) && *av != '0'))
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-	}
-	return (1);
-}*/
-
 int check_errors_aux(char *arg)
 {
 	int i;
