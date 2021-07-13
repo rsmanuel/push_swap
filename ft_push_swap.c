@@ -37,7 +37,7 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	free(data);
 }
 
-int	check_errors(int *stack, int num, int i, char *av)
+/*int	check_errors(int *stack, int num, int i, char *av)
 {
 	int	j;
 
@@ -51,6 +51,60 @@ int	check_errors(int *stack, int num, int i, char *av)
 		}
 	}
 	return (1);
+}*/
+
+int check_errors_aux(char *arg)
+{
+	int i;
+
+	i = 0;
+	while (arg[i])
+	{
+		if(arg[i] == '-')
+			i++;
+		if (!ft_isdigit(arg[i]))
+		{
+			write(2, "Error\n", 6);
+			return(1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+int check_errors(int *stack, int len)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 1;
+    while (stack[i])
+    {
+        if(stack[i] > stack[i + 1])
+            break;
+        i++;
+    }
+    if (i == (len - 1))
+        return (1);
+    i = 0;
+    while (stack[i])
+    {
+        j = 0;
+        while (j < len)
+        {
+            if (j == i)
+                j++;
+            if (stack[j] == stack[i])
+			{
+				write(2, "Error\n", 6);
+                return(1);
+			}
+            j++;
+        }
+        i++;
+    }
+    return(0);
 }
 
 int	check_sorted(int *stack, int ac)
@@ -82,14 +136,20 @@ int	main(int ac, char **av)
 			return (1);
 		while (*++av)
 		{
-			stack[i] = ft_atoi(*av);
-			if (!check_errors(stack, stack[i], i, *av))
+			if (check_errors_aux(*av))
 			{
 				free(stack);
 				free(stack_b);
 				return (1);
 			}
+			stack[i] = ft_atoi(*av);
 			i++;
+		}
+		if (check_errors(stack, ac - 1))
+		{
+			free(stack);
+			free(stack_b);
+			return (1);
 		}
 		init_struct(stack, stack_b, ac - 1);
 		free(stack);
