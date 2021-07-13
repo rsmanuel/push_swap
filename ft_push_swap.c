@@ -1,9 +1,8 @@
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 void	main_continue(t_temp *data, int len)
 {
-	int where;
+	int	where;
 
 	where = 0;
 	if (len == 2 || len == 3)
@@ -38,70 +37,23 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	free(data);
 }
 
-int check_errors_aux(char *arg)
+void	free_stacks(int *stack_a, int *stack_b)
 {
-	int i;
+	free(stack_a);
+	free(stack_b);
+}
 
-	i = 0;
-	while (arg[i])
+int	main_aux(int i, char **av, int *stack, int *stack_b)
+{
+	while (*++av)
 	{
-		if(arg[i] == '-')
-			i++;
-		if (!ft_isdigit(arg[i]))
+		if (check_errors_aux(*av))
 		{
-			write(2, "Error\n", 6);
-			return(1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-int check_errors(int *stack, int len)
-{
-    int i;
-    int j;
-
-    i = 0;
-    j = 1;
-    while (i < len - 1)
-    {
-        if(stack[i] > stack[i + 1])
-            break;
-        i++;
-    }
-    if (i == (len - 1))
-        return (1);
-    i = 0;
-    while (i < len - 1)
-    {
-        j = 0;
-        while (j < len)
-        {
-            if (j == i)
-                j++;
-            if (stack[j] == stack[i])
-			{
-				write(2, "Error\n", 6);
-                return(1);
-			}
-            j++;
-        }
-        i++;
-    }
-    return(0);
-}
-
-int	check_sorted(int *stack, int ac)
-{
-	int i;
-
-	i = ac;
-	while (i > 0)
-	{
-		if (stack[i] < stack[i - 1])
+			free_stacks(stack, stack_b);
 			return (1);
-		i--;
+		}
+		stack[i] = ft_atoi(*av);
+		i++;
 	}
 	return (0);
 }
@@ -119,28 +71,16 @@ int	main(int ac, char **av)
 		stack_b = (int *)malloc(sizeof(int) * (ac - 1));
 		if (!stack || !stack_b)
 			return (1);
-		while (*++av)
+		if (main_aux(i, av, stack, stack_b))
+			return (1);
+		if (check_errors(stack, ac - 1) || check_errors_cont(stack, ac - 1))
 		{
-			if (check_errors_aux(*av))
-			{
-				free(stack);
-				free(stack_b);
-				return (1);
-			}
-			stack[i] = ft_atoi(*av);
-			i++;
-		}
-		if (check_errors(stack, ac - 1))
-		{
-			free(stack);
-			free(stack_b);
+			free_stacks(stack, stack_b);
 			return (1);
 		}
 		init_struct(stack, stack_b, ac - 1);
-		free(stack);
-		free(stack_b);
+		free_stacks(stack, stack_b);
 		return (0);
 	}
-	else
-		return (1);
+	return (1);
 }

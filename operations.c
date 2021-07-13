@@ -52,7 +52,7 @@ void	op_r(int *stack, int len)
 	free(tmp_stack);
 }
 
-void sb(t_temp *data)
+void	sb(t_temp *data)
 {
 	op_s(data->stack_b);
 	write(1, "sb\n", 3);

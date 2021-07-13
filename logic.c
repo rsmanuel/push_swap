@@ -1,5 +1,4 @@
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 void	three_aux(t_temp *data)
 {
@@ -29,25 +28,6 @@ void	three_aux(t_temp *data)
 		rra(data);
 }
 
-void quicksort(int *sort, int len)
-{
-	int count;
-	int i;
-
-	count = 0;
-	i = len;
-	while (--i > 0)
-    {
-		if (sort[i] < sort[i - 1])
-		{
-			ft_swap_int(&sort[i], &sort[i - 1]);
-			count++; 
-		}
-	}
-	if (count)
-		quicksort(sort, len);
-}
-
 void	two_and_three(t_temp *data, int len)
 {
 	if (len == 2)
@@ -59,55 +39,12 @@ void	two_and_three(t_temp *data, int len)
 		three_aux(data);
 }
 
-int find_pivot(int *sort, int len)
+int	sort_and_pivot(t_temp *data, int len)
 {
-	int index;
-
-	index = len / 4;
-	return(sort[index]);
-}
-
-int find_max(t_temp *data)
-{
-	int i;
-	int max;
-	int index;
-
-	i = 0;
-	max = data->stack_b[0];
-	index = 0;
-	while (i < data->len_b)
-	{
-		if (max <= data->stack_b[i])
-		{
-			index = i;
-			max = data->stack_b[i];
-		}
-		i++;
-	}
-	return (index);
-}
-
-int check_pivot(t_temp *data, int pivot)
-{
-	int i;
-
-	i = 0;
-	while(i < data->len_a)
-	{
-		if (data->stack_a[i] < pivot)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int sort_and_pivot(t_temp *data, int len)
-{
-	int i;
-	int j;
-	int *sort_temp;
-	int pivot;
+	int	i;
+	int	j;
+	int	*sort_temp;
+	int	pivot;
 
 	i = 0;
 	j = 0;
@@ -119,11 +56,10 @@ int sort_and_pivot(t_temp *data, int len)
 	quicksort(sort_temp, data->len_a);
 	pivot = find_pivot(sort_temp, len);
 	free(sort_temp);
-
 	return (pivot);
 }
 
-void    four_to_hundred(t_temp *data, int pivot)
+void	four_to_hundred(t_temp *data, int pivot)
 {
 	while (check_pivot(data, pivot) && data->len_a > 3)
 	{
@@ -139,14 +75,14 @@ void    four_to_hundred(t_temp *data, int pivot)
 	}	
 }
 
-void four_to_hundred_cont(t_temp *data)
+void	four_to_hundred_cont(t_temp *data)
 {
-	int where;
+	int	where;
 
 	where = ((data->len_b - 1) / 2);
 	if (find_max(data) == 0)
 	{
-		if(data->stack_b[0] > data->stack_a[0])
+		if (data->stack_b[0] > data->stack_a[0])
 		{
 			pa(data);
 			sa(data);
