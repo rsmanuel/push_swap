@@ -93,7 +93,7 @@ int check_pivot(t_temp *data, int pivot)
 	int i;
 
 	i = 0;
-	while(data->stack_a[i] && i < data->len_a)
+	while(i < data->len_a)
 	{
 		if (data->stack_a[i] < pivot)
 			return (1);
@@ -132,7 +132,7 @@ void    four_to_hundred(t_temp *data, int pivot)
 		else if (data->stack_a[0] < pivot)
 			pb(data);
 	}
-	if (data->len_a > 3)
+	if (data->len_a > 3 && data->stack_a[0] != 0)
 	{
 		pivot = sort_and_pivot(data, data->len_a);
 		four_to_hundred(data, pivot);
