@@ -45,8 +45,6 @@ void	pb(t_temp *data)
 	j = 0;
 	while (i < data->len_a - 1)
 		data->stack_a[i++] = new_stack[j++];
-	data->top_a = data->stack_a[0];
-	data->top_b = data->stack_b[0];
 	if (data->len_a)
 		data->len_a--;
 	write(1, "pb\n", 3);
@@ -98,8 +96,6 @@ void	pa(t_temp *data)
 	j = 0;
 	while (i < data->len_b - 1)
 		data->stack_b[i++] = new_stack[j++];
-	data->top_a = data->stack_b[0];
-	data->top_b = data->stack_a[0];
 	if (data->len_b)
 		data->len_b--;
 	write(1, "pa\n", 3);

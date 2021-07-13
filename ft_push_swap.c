@@ -29,6 +29,7 @@ void	init_struct(int *stack, int *stack_b, int ac)
 	t_temp	*data;
 
 	data = malloc(sizeof(t_temp));
+	data->ac = ac;
 	data->len_a = ac;
 	data->len_b = 0;
 	data->stack_a = stack;
@@ -63,7 +64,7 @@ int check_errors(int *stack, int len)
 
     i = 0;
     j = 1;
-    while (stack[i])
+    while (i < len - 1)
     {
         if(stack[i] > stack[i + 1])
             break;
@@ -72,7 +73,7 @@ int check_errors(int *stack, int len)
     if (i == (len - 1))
         return (1);
     i = 0;
-    while (stack[i])
+    while (i < len - 1)
     {
         j = 0;
         while (j < len)

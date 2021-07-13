@@ -3,6 +3,6 @@ sort
 a.out
 libft/*
 a.out.dSYM
-checker
+checker_Mac
 pyviz.py
 push_swap

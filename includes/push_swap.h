@@ -10,9 +10,7 @@ typedef struct s_temp
     int len_b;
     int *stack_a;
     int *stack_b;
-    int *tmp_stack_b;
-    int top_b;
-    int top_a;
+    int ac;
 }   t_temp;
 
 void op_s(int *stack_a);
