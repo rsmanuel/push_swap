@@ -67,7 +67,7 @@ int	check_sorted(int *stack, int ac)
 {
 	int	i;
 
-	i = ac;
+	i = ac - 1;
 	while (i > 0)
 	{
 		if (stack[i] < stack[i - 1])
