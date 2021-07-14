@@ -9,7 +9,7 @@ int	check_errors_aux(char *arg)
 	{
 		if (arg[i] == '-')
 			i++;
-		if (!ft_isdigit(arg[i]))
+		if (!ft_isdigit(arg[i]) || (!ft_atoi(arg) && arg[i] != '0'))
 		{
 			write(2, "Error\n", 6);
 			return (1);

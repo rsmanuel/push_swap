@@ -1,5 +1,4 @@
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 void	op_s(int *stack)
 {

@@ -43,18 +43,18 @@ void	free_stacks(int *stack_a, int *stack_b)
 	free(stack_b);
 }
 
-int main_aux(int i, char **av, int *stack, int *stack_b)
+int	main_aux(int i, char **av, int *stack, int *stack_b)
 {
 	while (*++av)
+	{
+		if (check_errors_aux(*av))
 		{
-			if (check_errors_aux(*av))
-			{
-				free_stacks(stack, stack_b);
-				return (1);
-			}
-			stack[i] = ft_atoi(*av);
-			i++;
+			free_stacks(stack, stack_b);
+			return (1);
 		}
+		stack[i] = ft_atoi(*av);
+		i++;
+	}
 	return (0);
 }
 
@@ -73,7 +73,7 @@ int	main(int ac, char **av)
 			return (1);
 		if (main_aux(i, av, stack, stack_b))
 			return (1);
-		if (check_errors(stack, ac - 1) || check_errors_cont(stack, ac - 1))
+		if (check_errors_cont(stack, ac - 1) || check_errors(stack, ac - 1))
 		{
 			free_stacks(stack, stack_b);
 			return (1);

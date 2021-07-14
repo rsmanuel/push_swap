@@ -6,7 +6,7 @@
 /*   By: rmanuel <rmanuel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 16:50:28 by rmanuel           #+#    #+#             */
-/*   Updated: 2021/06/22 15:57:53 by rmanuel          ###   ########.fr       */
+/*   Updated: 2021/07/14 02:11:02 by rmanuel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *str)
 {
-	int		result;
+	long	result;
 	int		sign;
 
 	sign = 1;
@@ -34,5 +34,8 @@ int	ft_atoi(const char *str)
 		result = result + *str - '0';
 		str++;
 	}
+	if ((result * sign) > 2147483647
+		|| (result * sign) < -2147483648)
+		return (0);
 	return (result * sign);
 }

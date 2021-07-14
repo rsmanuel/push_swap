@@ -1,5 +1,4 @@
 #include "includes/push_swap.h"
-#include <stdio.h>
 
 void	op_pb_aux(t_temp *data, int i, int j, int *stack_b)
 {
